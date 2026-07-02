@@ -1,0 +1,20 @@
+{
+  "title": "JPG vs PNG: Which Image Format Should You Use?",
+  "slug": "jpg-vs-png",
+  "icon": "🖼",
+  "coverImage": "",
+  "excerpt": "The real differences — and when each one wins.",
+  "metaDescription": "A practical breakdown of JPG vs PNG — file size, transparency, quality loss, and which one to pick for photos, logos, and screenshots.",
+  "focusKeyword": "jpg vs png which image format to use",
+  "readTime": "5 min read",
+  "date": "2026-07-02T00:00:00.000Z",
+  "body": "The short version: JPG compresses photos smaller by throwing away detail you mostly won't notice. PNG keeps every pixel exact and supports transparency, but the files are bigger. Pick based on what the image actually is.\n\n## The core difference\n\nJPG (or JPEG) uses lossy compression — it analyzes the image and discards information it judges least noticeable, which is what makes the file small. Do this repeatedly (save, re-open, save again) and quality visibly degrades. PNG uses lossless compression, so the file is an exact copy of the original pixels every time, just packaged more efficiently. That accuracy costs file size, especially on photos with lots of natural color variation.\n\n## When to use JPG\n\n- Photographs — portraits, landscapes, product shots\n- Any image where file size matters more than pixel-perfect accuracy\n- Web pages where you want fast load times and the image has no flat color areas or text\n\n## When to use PNG\n\n- Logos, icons, and illustrations with flat colors or sharp edges\n- Screenshots, especially ones containing text\n- Any image that needs a transparent background\n- Images you'll re-edit multiple times, where you don't want quality loss to stack up\n\n## Quick comparison\n\n| | JPG | PNG |\n|---|---|---|\n| Compression | Lossy | Lossless |\n| Transparency | No | Yes |\n| Best for | Photos | Logos, screenshots, text |\n| Typical file size | Smaller | Larger |\n| Repeated editing | Degrades quality | No quality loss |",
+  "faq": [
+    { "question": "Does saving a PNG as JPG lose quality?", "answer": "Yes — JPG uses lossy compression, so converting a PNG to JPG discards some image data permanently, even at high quality settings." },
+    { "question": "Can JPG have a transparent background?", "answer": "No. JPG has no transparency channel — any transparent area is filled with a solid color (usually white) when exported." }
+  ],
+  "relatedTools": [
+    { "label": "JPG ↔ PNG Converter", "href": "tools.html#image-convert" },
+    { "label": "Image Compressor", "href": "tools.html#image-compressor" }
+  ]
+}

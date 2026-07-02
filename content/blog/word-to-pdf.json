@@ -1,0 +1,20 @@
+{
+  "title": "How to Convert Word to PDF Without Losing Formatting",
+  "slug": "word-to-pdf",
+  "icon": "📄",
+  "coverImage": "",
+  "excerpt": "The mistakes that break formatting, and a clean workflow that avoids them.",
+  "metaDescription": "A clean, reliable workflow for converting Word documents to PDF without broken fonts, shifted layouts, or missing images.",
+  "focusKeyword": "convert word to pdf without losing formatting",
+  "readTime": "6 min read",
+  "date": "2026-07-02T00:00:00.000Z",
+  "body": "A Word document that looks perfect on your screen can arrive as a PDF with shifted paragraphs, missing bullet points, or a font that's clearly not the one you picked. It's one of the most common — and most avoidable — document problems.\n\n## Why formatting breaks\n\nMost formatting damage comes down to one of three causes: missing fonts, where the PDF engine substitutes a font that takes up different space; embedded objects like tables or text boxes that some converters flatten or reflow; and page-size mismatches, where a converter defaults to a different paper size than your document was set to.\n\n## The reliable method\n\n1. **Use \"Save as PDF\" or \"Export,\" not \"Print to PDF.\"** Word's native export embeds fonts directly; virtual print drivers often don't.\n2. **Check your fonts are standard or embedded.** If you used a downloaded font, confirm it's set to embed under Word's save options — otherwise the PDF will substitute it.\n3. **Review page size and margins** before exporting, since some converters reset these to a regional default.\n4. **Open the PDF and compare it side-by-side** with the original before sending it anywhere important.\n\n## Pre-export checklist\n\n- Fonts embedded or web-safe\n- Images anchored, not floating awkwardly between paragraphs\n- Tables previewed for column overflow\n- Page size matches your intended output (A4 vs Letter)",
+  "faq": [
+    { "question": "Why does formatting break when converting Word to PDF?", "answer": "Formatting usually breaks when the exporting program doesn't have the exact fonts used in the document, so it substitutes different ones with different widths, which pushes text and images out of place." },
+    { "question": "Does Word's built-in \"Save as PDF\" work?", "answer": "In most cases, yes — it embeds fonts and preserves layout more reliably than printing to a PDF driver." }
+  ],
+  "relatedTools": [
+    { "label": "Image Tools", "href": "tools.html#image-tools" },
+    { "label": "PDF Tools", "href": "tools.html#pdf-tools" }
+  ]
+}
