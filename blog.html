@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — ToolNova</title>
+<meta name="description" content="Practical guides on PDFs, images, text formatting and developer tools — written to go with ToolNova's free tools.">
+<link rel="canonical" href="https://toolnova.app/blog.html">
+<link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<nav class="navbar"><div class="navbar-inner">
+  <a href="index.html" class="logo-lockup"><img src="assets/logo-mark.svg" alt="ToolNova logo" class="logo-mark">Tool<span class="accent">Nova</span></a>
+  <div class="nav-links" id="navLinks"><a href="index.html">Home</a><a href="tools.html">All Tools</a><a href="blog.html" class="active">Blog</a><a href="about.html">About</a></div>
+  <div class="nav-actions"><button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">☾</button><button class="nav-burger" id="navBurger" aria-label="Open menu">☰</button></div>
+</div></nav>
+<div class="container">
+  <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span>Blog</span></div>
+  <section class="section">
+    <h1 style="font-size:32px;margin-bottom:8px;">The ToolNova Blog</h1>
+    <p style="color:var(--muted);margin-bottom:30px;">Practical guides on the problems our tools solve.</p>
+    <div class="grid grid-tools" id="blogGrid">
+      <div class="card tool-card"><div class="skeleton" style="height:18px;width:70%;margin-bottom:10px;"></div><div class="skeleton" style="height:14px;width:100%;"></div></div>
+      <div class="card tool-card"><div class="skeleton" style="height:18px;width:70%;margin-bottom:10px;"></div><div class="skeleton" style="height:14px;width:100%;"></div></div>
+      <div class="card tool-card"><div class="skeleton" style="height:18px;width:70%;margin-bottom:10px;"></div><div class="skeleton" style="height:14px;width:100%;"></div></div>
+    </div>
+  </section>
+</div>
+<footer><div class="container"><div class="footer-bottom"><span>© 2026 ToolNova. All rights reserved.</span><a href="index.html">Back to home</a></div></div></footer>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+<script src="assets/config.js"></script>
+<script src="assets/cms-loader.js"></script>
+<script src="assets/main.js"></script>
+<script>
+async function renderBlogList() {
+  const grid = document.getElementById('blogGrid');
+  if (!cmsConfigured()) {
+    grid.innerHTML = `<div class="card tool-card" style="grid-column:1/-1;">
+      <h3>Blog isn't connected yet</h3>
+      <p>Add your GitHub username and repo name to <code>assets/config.js</code> to pull in live posts — see README.md → "Setting up the CMS."</p>
+    </div>`;
+    return;
+  }
+  try {
+    const posts = await fetchBlogList();
+    if (!posts.length) {
+      grid.innerHTML = `<div class="card tool-card" style="grid-column:1/-1;"><h3>No posts yet</h3><p>Publish your first article from the <a href="admin/" style="color:var(--nova-1);">CMS admin panel</a>.</p></div>`;
+      return;
+    }
+    grid.innerHTML = posts.map(p => `
+      <a href="blog-post.html?slug=${encodeURIComponent(p.slug)}" class="card tool-card">
+        <div class="top"><div class="ic">${p.icon || '📄'}</div><h3>${p.title}</h3></div>
+        <p>${p.excerpt || ''}</p>
+        <span class="tag">${p.readTime || ''}</span>
+      </a>`).join('');
+  } catch (e) {
+    grid.innerHTML = `<div class="card tool-card" style="grid-column:1/-1;"><h3>Couldn't load posts</h3><p>${e.message}</p></div>`;
+  }
+}
+renderBlogList();
+</script>
+</body>
+</html>

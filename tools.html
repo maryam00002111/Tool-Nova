@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Free Online Tools — ToolNova</title>
+<meta name="description" content="Browse 25+ free online tools on ToolNova: text, developer, color, calculator, image and QR tools. Everything runs instantly in your browser.">
+<link rel="canonical" href="https://toolnova.app/tools.html">
+<meta property="og:title" content="All Free Online Tools — ToolNova">
+<meta property="og:description" content="25+ free browser-based tools for text, code, color, image and calculations.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toolnova.app/tools.html">
+<link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://toolnova.app/"},
+    {"@type": "ListItem", "position": 2, "name": "All Tools", "item": "https://toolnova.app/tools.html"}
+  ]
+}
+</script>
+<style>
+  .tools-layout { display: grid; grid-template-columns: 220px 1fr; gap: 32px; align-items: flex-start; }
+  .tools-sidebar { position: sticky; top: 84px; display: flex; flex-direction: column; gap: 4px; }
+  .tools-sidebar a { padding: 9px 12px; border-radius: var(--radius-sm); font-size: 13.5px; color: var(--muted); }
+  .tools-sidebar a:hover, .tools-sidebar a.active { background: var(--surface); color: var(--text); }
+  .cat-heading { display: flex; align-items: center; gap: 10px; margin: 46px 0 18px; }
+  .cat-heading .ic { width: 34px; height: 34px; border-radius: 9px; background: var(--nova-grad); display:flex; align-items:center; justify-content:center; font-size:15px; }
+  .cat-heading h2 { font-size: 21px; }
+  .tool-app { border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; margin-bottom: 18px; background: var(--surface); }
+  .tool-app h3 { font-size: 16.5px; margin-bottom: 4px; }
+  .tool-app .desc { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+  .tool-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; align-items: center; }
+  textarea, input[type=text], input[type=number], input[type=date], select {
+    width: 100%; background: var(--ink); border: 1px solid var(--border); border-radius: var(--radius-sm);
+    color: var(--text); padding: 10px 12px; font-family: var(--font-mono); font-size: 13.5px; outline: none;
+  }
+  select, input[type=date] { font-family: var(--font-body); }
+  textarea { min-height: 120px; resize: vertical; }
+  label.field { display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; color: var(--muted); flex: 1; min-width: 140px; }
+  .stat-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+  .pill { background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; padding: 6px 14px; font-size: 12.5px; }
+  .pill b { color: var(--nova-1); }
+  .swatch { width: 100%; height: 64px; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+  .placeholder-note { border: 1px dashed var(--border); border-radius: var(--radius-sm); padding: 16px; color: var(--muted); font-size: 13px; }
+  @media (max-width: 900px) { .tools-layout { grid-template-columns: 1fr; } .tools-sidebar { position: static; flex-direction: row; overflow-x: auto; } }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="logo-lockup"><img src="assets/logo-mark.svg" alt="ToolNova logo" class="logo-mark">Tool<span class="accent">Nova</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="tools.html" class="active">All Tools</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark or light theme">☾</button>
+      <button class="nav-burger" id="navBurger" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span>All Tools</span></div>
+
+  <div style="position:relative; margin-bottom: 10px;">
+    <div class="hero-search" style="max-width:none;">
+      <span>🔍</span>
+      <input type="text" id="toolsSearch" placeholder="Search all 25+ tools…">
+    </div>
+    <div id="toolsSearchResults" style="display:none;position:absolute;top:56px;left:0;right:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;z-index:20;"></div>
+  </div>
+
+  <div class="tools-layout" style="margin-top:24px;">
+    <aside class="tools-sidebar">
+      <a href="#pdf-tools">📄 PDF Tools</a>
+      <a href="#image-tools">🖼 Image Tools</a>
+      <a href="#text-tools">📝 Text Tools</a>
+      <a href="#dev-tools">{ } Developer Tools</a>
+      <a href="#qr-tools">▦ QR Tools</a>
+      <a href="#color-tools">🎨 Color Tools</a>
+      <a href="#calculators">＝ Calculators</a>
+    </aside>
+
+    <main>
+      <!-- ============ PDF TOOLS ============ -->
+      <div class="cat-heading" id="pdf-tools"><div class="ic">📄</div><h2>PDF Tools</h2></div>
+
+      <div class="tool-app">
+        <h3>Image to PDF</h3>
+        <p class="desc">Combine one or more images into a single downloadable PDF — runs fully in your browser.</p>
+        <input type="file" id="imgToPdfInput" accept="image/*" multiple>
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-primary btn-sm" onclick="imagesToPdf()">Generate PDF</button>
+          <span id="imgToPdfStatus" style="font-size:12.5px;color:var(--muted);"></span>
+        </div>
+      </div>
+
+      <div class="tool-app" id="merge-pdf">
+        <h3>Merge PDF</h3>
+        <p class="desc">Combine two or more PDF files into one, in the order you select them.</p>
+        <input type="file" id="mergeInput" accept="application/pdf" multiple>
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-primary btn-sm" onclick="mergePDFs()">Merge PDFs</button>
+          <span id="mergeStatus" style="font-size:12.5px;color:var(--muted);"></span>
+        </div>
+      </div>
+
+      <div class="tool-app" id="split-pdf">
+        <h3>Split PDF</h3>
+        <p class="desc">Pull specific pages into a new PDF, or split every page into its own file.</p>
+        <input type="file" id="splitInput" accept="application/pdf">
+        <div class="tool-row" style="margin-top:12px;">
+          <label class="field">Page range (e.g. 1-3,5)<input type="text" id="splitRange" placeholder="1-3,5"></label>
+        </div>
+        <div class="tool-row">
+          <button class="btn btn-primary btn-sm" onclick="extractPages()">Extract Page Range</button>
+          <button class="btn btn-ghost btn-sm" onclick="splitIntoPages()">Split Every Page (ZIP)</button>
+          <span id="splitStatus" style="font-size:12.5px;color:var(--muted);"></span>
+        </div>
+      </div>
+
+      <div class="tool-app" id="rotate-pdf">
+        <h3>Rotate PDF</h3>
+        <p class="desc">Rotate every page in a PDF by a fixed angle.</p>
+        <input type="file" id="rotateInput" accept="application/pdf">
+        <div class="tool-row" style="margin-top:12px;">
+          <label class="field">Rotate by
+            <select id="rotateAngle"><option value="90">90°</option><option value="180">180°</option><option value="270">270°</option></select>
+          </label>
+          <button class="btn btn-primary btn-sm" onclick="rotatePDF()" style="align-self:flex-end;">Rotate</button>
+        </div>
+        <span id="rotateStatus" style="font-size:12.5px;color:var(--muted);"></span>
+      </div>
+
+      <div class="tool-app" id="compress-pdf">
+        <h3>Compress PDF</h3>
+        <p class="desc">Runs structural optimization (object-stream compression) to shrink file size. This pass doesn't recompress embedded images, so savings vary — heaviest on text-based PDFs.</p>
+        <input type="file" id="compressPdfInput" accept="application/pdf">
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-primary btn-sm" onclick="compressPDF()">Compress</button>
+        </div>
+        <span id="compressPdfStatus" style="font-size:12.5px;color:var(--muted);"></span>
+      </div>
+
+      <div class="placeholder-note">
+        PDF Unlock, PDF Protect, and PDF ↔ Word need either a password/encryption engine or a document-rendering engine that isn't reliable to run fully client-side yet — rather than ship a button that fakes it, they're staying off the site until they actually work.
+      </div>
+
+      <!-- ============ IMAGE TOOLS ============ -->
+      <div class="cat-heading" id="image-tools"><div class="ic">🖼</div><h2>Image Tools</h2></div>
+
+      <div class="tool-app" id="image-compressor">
+        <h3>Image Compressor</h3>
+        <p class="desc">Reduce a JPG/PNG's file size by adjusting quality — processed locally, nothing uploaded.</p>
+        <input type="file" id="compressInput" accept="image/*">
+        <div class="tool-row" style="margin-top:12px;">
+          <label class="field">Quality: <span id="compressQualityVal">70</span>%
+            <input type="range" id="compressQuality" min="10" max="100" value="70" oninput="document.getElementById('compressQualityVal').textContent=this.value">
+          </label>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="compressImage()">Compress</button>
+        <div id="compressResult" style="margin-top:14px;"></div>
+      </div>
+
+      <div class="tool-app" id="image-resizer">
+        <h3>Image Resizer</h3>
+        <p class="desc">Resize an image to exact pixel dimensions.</p>
+        <input type="file" id="resizeInput" accept="image/*">
+        <div class="tool-row" style="margin-top:12px;">
+          <label class="field">Width (px)<input type="number" id="resizeW" placeholder="800"></label>
+          <label class="field">Height (px)<input type="number" id="resizeH" placeholder="600"></label>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="resizeImage()">Resize</button>
+        <div id="resizeResult" style="margin-top:14px;"></div>
+      </div>
+
+      <div class="tool-app" id="image-convert">
+        <h3>JPG ↔ PNG Converter</h3>
+        <p class="desc">Convert an image between JPG and PNG formats.</p>
+        <input type="file" id="convertInput" accept="image/*">
+        <div class="tool-row" style="margin-top:12px;">
+          <label class="field">Convert to
+            <select id="convertFormat"><option value="image/png">PNG</option><option value="image/jpeg">JPG</option></select>
+          </label>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="convertImage()">Convert</button>
+        <div id="convertResult" style="margin-top:14px;"></div>
+      </div>
+
+      <div class="tool-app" id="image-crop">
+        <h3>Crop Image</h3>
+        <p class="desc">Upload an image, drag on it to select the area you want, then apply.</p>
+        <input type="file" id="cropInput" accept="image/*" onchange="loadCropImage(this)">
+        <div style="margin-top:12px;">
+          <canvas id="cropCanvas" style="max-width:100%;border-radius:8px;border:1px solid var(--border);cursor:crosshair;touch-action:none;"></canvas>
+        </div>
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-primary btn-sm" onclick="applyCrop()">Apply Crop &amp; Download</button>
+          <button class="btn btn-ghost btn-sm" onclick="resetCropSelection()">Reset Selection</button>
+        </div>
+        <div id="cropResult" style="margin-top:14px;"></div>
+      </div>
+
+      <div class="tool-app" id="image-rotate">
+        <h3>Rotate Image</h3>
+        <p class="desc">Rotate an image left, right, or upside down.</p>
+        <input type="file" id="rotateImgInput" accept="image/*">
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-ghost btn-sm" onclick="rotateImage(-90)">⟲ Rotate Left</button>
+          <button class="btn btn-ghost btn-sm" onclick="rotateImage(90)">⟳ Rotate Right</button>
+          <button class="btn btn-ghost btn-sm" onclick="rotateImage(180)">↻ 180°</button>
+        </div>
+        <div id="rotateImgResult" style="margin-top:14px;"></div>
+      </div>
+
+
+      <div class="cat-heading" id="text-tools"><div class="ic">📝</div><h2>Text Tools</h2></div>
+
+      <div class="tool-app" id="word-counter">
+        <h3>Word Counter</h3>
+        <p class="desc">Live word, character, sentence and reading-time counts.</p>
+        <textarea id="wcInput" placeholder="Paste or type your text…" oninput="updateWordCount()"></textarea>
+        <div class="stat-pills">
+          <div class="pill">Words: <b id="wcWords">0</b></div>
+          <div class="pill">Characters: <b id="wcChars">0</b></div>
+          <div class="pill">Sentences: <b id="wcSentences">0</b></div>
+          <div class="pill">Reading time: <b id="wcTime">0s</b></div>
+        </div>
+      </div>
+
+      <div class="tool-app" id="char-counter">
+        <h3>Character Counter</h3>
+        <p class="desc">Count characters with and without spaces.</p>
+        <textarea id="ccInput" placeholder="Paste or type your text…" oninput="updateCharCount()"></textarea>
+        <div class="stat-pills">
+          <div class="pill">With spaces: <b id="ccWith">0</b></div>
+          <div class="pill">Without spaces: <b id="ccWithout">0</b></div>
+        </div>
+      </div>
+
+      <div class="tool-app" id="case-converter">
+        <h3>Case Converter</h3>
+        <p class="desc">Switch between UPPERCASE, lowercase, Title Case and Sentence case.</p>
+        <textarea id="caseInput" placeholder="Type text to convert…"></textarea>
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-ghost btn-sm" onclick="convertCase('upper')">UPPERCASE</button>
+          <button class="btn btn-ghost btn-sm" onclick="convertCase('lower')">lowercase</button>
+          <button class="btn btn-ghost btn-sm" onclick="convertCase('title')">Title Case</button>
+          <button class="btn btn-ghost btn-sm" onclick="convertCase('sentence')">Sentence case</button>
+          <button class="btn btn-primary btn-sm" onclick="tnCopy(document.getElementById('caseInput').value)">Copy</button>
+        </div>
+      </div>
+
+      <div class="tool-app" id="dedupe-lines">
+        <h3>Remove Duplicate Lines</h3>
+        <p class="desc">Paste a list and strip out repeated lines, keeping the first occurrence.</p>
+        <textarea id="dedupeInput" placeholder="One item per line…"></textarea>
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-primary btn-sm" onclick="dedupeLines()">Remove Duplicates</button>
+          <button class="btn btn-ghost btn-sm" onclick="tnCopy(document.getElementById('dedupeInput').value)">Copy Result</button>
+        </div>
+      </div>
+
+      <div class="tool-app" id="trim-spaces">
+        <h3>Remove Extra Spaces</h3>
+        <p class="desc">Collapse repeated spaces and trim blank lines.</p>
+        <textarea id="trimInput" placeholder="Paste messy text…"></textarea>
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-primary btn-sm" onclick="trimSpaces()">Clean Text</button>
+          <button class="btn btn-ghost btn-sm" onclick="tnCopy(document.getElementById('trimInput').value)">Copy Result</button>
+        </div>
+      </div>
+
+      <div class="tool-app" id="text-sorter">
+        <h3>Text Sorter</h3>
+        <p class="desc">Sort lines alphabetically or by length.</p>
+        <textarea id="sortInput" placeholder="One item per line…"></textarea>
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-ghost btn-sm" onclick="sortLines('az')">A → Z</button>
+          <button class="btn btn-ghost btn-sm" onclick="sortLines('za')">Z → A</button>
+          <button class="btn btn-ghost btn-sm" onclick="sortLines('len')">By length</button>
+          <button class="btn btn-primary btn-sm" onclick="tnCopy(document.getElementById('sortInput').value)">Copy Result</button>
+        </div>
+      </div>
+
+      <div class="tool-app" id="line-counter">
+        <h3>Line Counter</h3>
+        <p class="desc">Count total, blank, and non-blank lines instantly.</p>
+        <textarea id="lineInput" placeholder="Paste text…" oninput="updateLineCount()"></textarea>
+        <div class="stat-pills">
+          <div class="pill">Total lines: <b id="lineTotal">0</b></div>
+          <div class="pill">Non-empty: <b id="lineNonEmpty">0</b></div>
+          <div class="pill">Empty: <b id="lineEmpty">0</b></div>
+        </div>
+      </div>
+
+      <div class="tool-app" id="lorem-ipsum">
+        <h3>Lorem Ipsum Generator</h3>
+        <p class="desc">Generate placeholder paragraphs for mockups and layouts.</p>
+        <div class="tool-row">
+          <label class="field">Paragraphs<input type="number" id="loremCount" value="3" min="1" max="20"></label>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="generateLorem()">Generate</button>
+        <textarea id="loremOutput" style="margin-top:12px;" readonly></textarea>
+        <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="tnCopy(document.getElementById('loremOutput').value)">Copy</button>
+      </div>
+
+      <div class="tool-app" id="random-text-generator">
+        <h3>Random Text Generator</h3>
+        <p class="desc">Generate random English words, sentences, or paragraphs — useful for testing inputs, not just filling layouts.</p>
+        <div class="tool-row">
+          <label class="field">Type
+            <select id="randType">
+              <option value="words">Words</option>
+              <option value="sentences">Sentences</option>
+              <option value="paragraphs">Paragraphs</option>
+            </select>
+          </label>
+          <label class="field">How many<input type="number" id="randCount" value="10" min="1" max="50"></label>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="generateRandomText()">Generate</button>
+        <textarea id="randOutput" style="margin-top:12px;" readonly></textarea>
+        <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="tnCopy(document.getElementById('randOutput').value)">Copy</button>
+      </div>
+
+      <div class="tool-app" id="password-generator">
+        <h3>Password Generator</h3>
+        <p class="desc">Create a strong random password with the character sets you choose.</p>
+        <div class="tool-row">
+          <label class="field">Length: <span id="pwLenVal">16</span>
+            <input type="range" id="pwLen" min="6" max="48" value="16" oninput="document.getElementById('pwLenVal').textContent=this.value">
+          </label>
+        </div>
+        <div class="tool-row">
+          <label style="display:flex;align-items:center;gap:6px;font-size:13px;"><input type="checkbox" id="pwUpper" checked> Uppercase</label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:13px;"><input type="checkbox" id="pwLower" checked> Lowercase</label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:13px;"><input type="checkbox" id="pwNum" checked> Numbers</label>
+          <label style="display:flex;align-items:center;gap:6px;font-size:13px;"><input type="checkbox" id="pwSym" checked> Symbols</label>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="generatePassword()">Generate Password</button>
+        <div class="tool-row" style="margin-top:12px;">
+          <input type="text" id="pwOutput" readonly placeholder="Your password will appear here">
+          <button class="btn btn-ghost btn-sm" onclick="tnCopy(document.getElementById('pwOutput').value)">Copy</button>
+        </div>
+      </div>
+
+      <!-- ============ DEVELOPER TOOLS ============ -->
+      <div class="cat-heading" id="dev-tools"><div class="ic">{ }</div><h2>Developer Tools</h2></div>
+
+      <div class="tool-app" id="uuid-generator">
+        <h3>UUID Generator</h3>
+        <p class="desc">Generate RFC-4122 v4 UUIDs.</p>
+        <div class="tool-row">
+          <label class="field">How many? <input type="number" id="uuidCount" value="5" min="1" max="50"></label>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="generateUUIDs()">Generate</button>
+        <textarea id="uuidOutput" style="margin-top:12px;" readonly></textarea>
+        <button class="btn btn-ghost btn-sm" style="margin-top:10px;" onclick="tnCopy(document.getElementById('uuidOutput').value)">Copy All</button>
+      </div>
+
+      <div class="tool-app" id="json-formatter">
+        <h3>JSON Formatter &amp; Validator</h3>
+        <p class="desc">Pretty-print and validate JSON. Errors are shown with a clear message.</p>
+        <textarea id="jsonInput" placeholder='{"example": true, "nested": {"a": 1}}'></textarea>
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-primary btn-sm" onclick="formatJSON()">Format &amp; Validate</button>
+          <button class="btn btn-ghost btn-sm" onclick="tnCopy(document.getElementById('jsonInput').value)">Copy</button>
+          <span id="jsonStatus" style="font-size:12.5px;"></span>
+        </div>
+      </div>
+
+      <div class="tool-app" id="base64">
+        <h3>Base64 Encoder / Decoder</h3>
+        <p class="desc">Convert text to and from Base64.</p>
+        <textarea id="b64Input" placeholder="Type or paste text…"></textarea>
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-primary btn-sm" onclick="base64Encode()">Encode</button>
+          <button class="btn btn-primary btn-sm" onclick="base64Decode()">Decode</button>
+          <button class="btn btn-ghost btn-sm" onclick="tnCopy(document.getElementById('b64Input').value)">Copy</button>
+        </div>
+      </div>
+
+      <div class="tool-app" id="url-encode">
+        <h3>URL Encoder / Decoder</h3>
+        <p class="desc">Percent-encode or decode a URL or query string.</p>
+        <textarea id="urlInput" placeholder="https://example.com/?q=hello world"></textarea>
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-primary btn-sm" onclick="urlEncode()">Encode</button>
+          <button class="btn btn-primary btn-sm" onclick="urlDecode()">Decode</button>
+          <button class="btn btn-ghost btn-sm" onclick="tnCopy(document.getElementById('urlInput').value)">Copy</button>
+        </div>
+      </div>
+
+      <div class="tool-app" id="html-encode">
+        <h3>HTML Encoder / Decoder</h3>
+        <p class="desc">Escape or unescape HTML entities.</p>
+        <textarea id="htmlInput" placeholder="<div class='example'>Hello</div>"></textarea>
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-primary btn-sm" onclick="htmlEncode()">Encode</button>
+          <button class="btn btn-primary btn-sm" onclick="htmlDecode()">Decode</button>
+          <button class="btn btn-ghost btn-sm" onclick="tnCopy(document.getElementById('htmlInput').value)">Copy</button>
+        </div>
+      </div>
+
+      <div class="tool-app" id="css-minifier">
+        <h3>CSS Minifier</h3>
+        <p class="desc">Strip comments and unnecessary whitespace from CSS.</p>
+        <textarea id="cssInput" placeholder="body { color: red; }"></textarea>
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-primary btn-sm" onclick="minifyCSS()">Minify</button>
+          <button class="btn btn-ghost btn-sm" onclick="tnCopy(document.getElementById('cssInput').value)">Copy</button>
+        </div>
+      </div>
+
+      <div class="tool-app" id="js-minifier">
+        <h3>JavaScript Minifier</h3>
+        <p class="desc">Basic minification — strips comments and collapses whitespace. For complex code, spot-check the output before shipping it.</p>
+        <textarea id="jsInput" placeholder="function greet() { console.log('hi'); }"></textarea>
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-primary btn-sm" onclick="minifyJS()">Minify</button>
+          <button class="btn btn-ghost btn-sm" onclick="tnCopy(document.getElementById('jsInput').value)">Copy</button>
+        </div>
+      </div>
+
+      <div class="tool-app" id="xml-formatter">
+        <h3>XML Formatter</h3>
+        <p class="desc">Pretty-print XML with proper indentation.</p>
+        <textarea id="xmlInput" placeholder="<root><item>value</item></root>"></textarea>
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-primary btn-sm" onclick="formatXML()">Format</button>
+          <button class="btn btn-ghost btn-sm" onclick="tnCopy(document.getElementById('xmlInput').value)">Copy</button>
+          <span id="xmlStatus" style="font-size:12.5px;"></span>
+        </div>
+      </div>
+
+      <div class="tool-app" id="markdown-html">
+        <h3>Markdown to HTML</h3>
+        <p class="desc">Converts headings, bold/italic, links and lists. A focused subset, not a full CommonMark parser.</p>
+        <textarea id="mdInput" placeholder="# Hello&#10;**bold** and _italic_&#10;- item one&#10;- item two"></textarea>
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-primary btn-sm" onclick="convertMarkdown()">Convert</button>
+          <button class="btn btn-ghost btn-sm" onclick="tnCopy(document.getElementById('mdOutput').value)">Copy HTML</button>
+        </div>
+        <textarea id="mdOutput" style="margin-top:12px;" readonly></textarea>
+      </div>
+
+      <!-- ============ QR TOOLS ============ -->
+      <div class="cat-heading" id="qr-tools"><div class="ic">▦</div><h2>QR Tools</h2></div>
+
+      <div class="tool-app" id="qr-generator">
+        <h3>QR Code Generator</h3>
+        <p class="desc">Turn any link or text into a downloadable QR code — generated locally using an open-source library.</p>
+        <input type="text" id="qrInput" placeholder="https://toolnova.app">
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-primary btn-sm" onclick="generateQR()">Generate QR Code</button>
+        </div>
+        <div id="qrOutput" style="margin-top:14px;"></div>
+      </div>
+
+      <div class="tool-app" id="qr-scanner">
+        <h3>QR Code Scanner</h3>
+        <p class="desc">Decode a QR code from an uploaded image, or scan live with your camera.</p>
+        <input type="file" id="qrScanInput" accept="image/*" onchange="scanQRFromFile(this)">
+        <div class="tool-row" style="margin-top:12px;">
+          <button class="btn btn-ghost btn-sm" id="qrCamBtn" onclick="toggleQRCamera()">Scan with Camera</button>
+        </div>
+        <video id="qrVideo" style="display:none;max-width:320px;width:100%;border-radius:8px;margin-top:12px;" playsinline muted></video>
+        <div id="qrScanResult" style="margin-top:14px;"></div>
+      </div>
+
+      <!-- ============ COLOR TOOLS ============ -->
+      <div class="cat-heading" id="color-tools"><div class="ic">🎨</div><h2>Color Tools</h2></div>
+
+      <div class="tool-app" id="color-picker">
+        <h3>Color Picker</h3>
+        <p class="desc">Pick a color and instantly get its HEX, RGB and HSL values.</p>
+        <div class="tool-row">
+          <input type="color" id="pickerInput" value="#FF6B4A" style="width:70px;height:44px;padding:2px;" oninput="updatePicker()">
+          <div style="flex:1;">
+            <div class="stat-pills">
+              <div class="pill">HEX: <b id="pickHex">#FF6B4A</b></div>
+              <div class="pill">RGB: <b id="pickRgb">255,107,74</b></div>
+              <div class="pill">HSL: <b id="pickHsl">10,100%,65%</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-app" id="hex-rgb">
+        <h3>HEX ↔ RGB Converter</h3>
+        <div class="tool-row">
+          <label class="field">HEX<input type="text" id="hexInput" placeholder="#7C5CFF" oninput="hexToRgb()"></label>
+          <label class="field">RGB<input type="text" id="rgbInput" placeholder="124,92,255" oninput="rgbToHex()"></label>
+        </div>
+        <div class="swatch" id="hexRgbSwatch" style="background:#7C5CFF;"></div>
+      </div>
+
+      <div class="tool-app" id="gradient-generator">
+        <h3>Gradient Generator</h3>
+        <p class="desc">Build a two-color CSS gradient and copy the code.</p>
+        <div class="tool-row">
+          <input type="color" id="gradA" value="#FF6B4A" oninput="updateGradient()">
+          <input type="color" id="gradB" value="#7C5CFF" oninput="updateGradient()">
+          <label class="field">Angle: <span id="gradAngleVal">135</span>°
+            <input type="range" id="gradAngle" min="0" max="360" value="135" oninput="updateGradient()">
+          </label>
+        </div>
+        <div class="swatch" id="gradPreview"></div>
+        <div class="tool-row" style="margin-top:12px;">
+          <input type="text" id="gradCode" readonly>
+          <button class="btn btn-ghost btn-sm" onclick="tnCopy(document.getElementById('gradCode').value)">Copy CSS</button>
+        </div>
+      </div>
+
+      <!-- ============ CALCULATORS ============ -->
+      <div class="cat-heading" id="calculators"><div class="ic">＝</div><h2>Calculators</h2></div>
+
+      <div class="tool-app" id="scientific-calculator">
+        <h3>Scientific Calculator</h3>
+        <input type="text" id="calcDisplay" readonly placeholder="0" style="font-size:20px;text-align:right;padding:16px;margin-bottom:10px;">
+        <div class="tool-row" style="margin-bottom:8px;">
+          <button class="btn btn-primary btn-sm" id="calcDegBtn" onclick="calcSetMode('deg')">DEG</button>
+          <button class="btn btn-ghost btn-sm" id="calcRadBtn" onclick="calcSetMode('rad')">RAD</button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;">
+          <button class="btn btn-ghost btn-sm" onclick="calcClear()">AC</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcDel()">DEL</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('(')">(</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcInput(')')">)</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('^')">^</button>
+
+          <button class="btn btn-ghost btn-sm" onclick="calcFunc('sin')">sin</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcFunc('cos')">cos</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcFunc('tan')">tan</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcFunc('sqrt')">√</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('!')">!</button>
+
+          <button class="btn btn-ghost btn-sm" onclick="calcFunc('log')">log</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcFunc('ln')">ln</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcConst('pi')">π</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcConst('e')">e</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcFunc('inv')">1/x</button>
+
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('7')">7</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('8')">8</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('9')">9</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('/')">÷</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('%')">%</button>
+
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('4')">4</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('5')">5</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('6')">6</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('*')">×</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('-')">−</button>
+
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('1')">1</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('2')">2</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('3')">3</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('.')">.</button>
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('+')">+</button>
+
+          <button class="btn btn-ghost btn-sm" onclick="calcInput('0')" style="grid-column: span 2;">0</button>
+          <button class="btn btn-primary btn-sm" onclick="calcEquals()" style="grid-column: span 3;">=</button>
+        </div>
+      </div>
+
+      <div class="tool-app" id="age-calculator">
+        <h3>Age Calculator</h3>
+        <div class="tool-row">
+          <label class="field">Date of birth<input type="date" id="ageDob"></label>
+          <button class="btn btn-primary btn-sm" onclick="calcAge()" style="align-self:flex-end;">Calculate</button>
+        </div>
+        <div id="ageResult" class="stat-pills"></div>
+      </div>
+
+      <div class="tool-app" id="bmi-calculator">
+        <h3>BMI Calculator</h3>
+        <div class="tool-row">
+          <label class="field">Weight (kg)<input type="number" id="bmiWeight" placeholder="70"></label>
+          <label class="field">Height (cm)<input type="number" id="bmiHeight" placeholder="175"></label>
+          <button class="btn btn-primary btn-sm" onclick="calcBMI()" style="align-self:flex-end;">Calculate</button>
+        </div>
+        <div id="bmiResult" class="stat-pills"></div>
+      </div>
+
+      <div class="tool-app" id="percentage-calculator">
+        <h3>Percentage Calculator</h3>
+        <div class="tool-row">
+          <label class="field">What is<input type="number" id="pctA" placeholder="20"></label>
+          <label class="field">% of<input type="number" id="pctB" placeholder="150"></label>
+          <button class="btn btn-primary btn-sm" onclick="calcPercentage()" style="align-self:flex-end;">Calculate</button>
+        </div>
+        <div id="pctResult" class="stat-pills"></div>
+      </div>
+
+      <div class="tool-app" id="discount-calculator">
+        <h3>Discount Calculator</h3>
+        <div class="tool-row">
+          <label class="field">Original price<input type="number" id="discPrice" placeholder="100"></label>
+          <label class="field">Discount %<input type="number" id="discPct" placeholder="25"></label>
+          <button class="btn btn-primary btn-sm" onclick="calcDiscount()" style="align-self:flex-end;">Calculate</button>
+        </div>
+        <div id="discResult" class="stat-pills"></div>
+      </div>
+
+      <div class="tool-app" id="loan-calculator">
+        <h3>EMI / Loan Calculator</h3>
+        <div class="tool-row">
+          <label class="field">Loan amount<input type="number" id="loanAmt" placeholder="500000"></label>
+          <label class="field">Interest rate (% p.a.)<input type="number" id="loanRate" placeholder="10"></label>
+          <label class="field">Tenure (months)<input type="number" id="loanMonths" placeholder="36"></label>
+          <button class="btn btn-primary btn-sm" onclick="calcEMI()" style="align-self:flex-end;">Calculate</button>
+        </div>
+        <div id="loanResult" class="stat-pills"></div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<div class="container"><div class="ad-slot" data-ad-slot="sidebar" style="margin:40px 0;">Ad placeholder — sidebar/footer banner (in production, this sits beside the sidebar on desktop)</div></div>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 ToolNova. All rights reserved.</span>
+      <a href="index.html">Back to home</a>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/cms-loader.js"></script>
+<script src="assets/main.js"></script>
+<script src="assets/tools.js"></script>
+<script>initSiteSearch('toolsSearch', 'toolsSearchResults');</script>
+</body>
+</html>

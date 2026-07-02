@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ToolNova — Free Online Tools for PDF, Image, Text &amp; Developers</title>
+<meta name="description" content="ToolNova gives you 25+ free online tools — PDF, image, text, developer, color and calculator utilities. No sign-up, no installs, everything runs in your browser.">
+<link rel="canonical" href="https://toolnova.app/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="ToolNova — Free Online Tools for Everyone">
+<meta property="og:description" content="25+ free browser-based tools for PDF, image, text and developer tasks. Fast, private, no sign-up required.">
+<meta property="og:url" content="https://toolnova.app/">
+<meta property="og:site_name" content="ToolNova">
+<meta property="og:image" content="https://toolnova.app/assets/logo-full-dark.svg">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ToolNova — Free Online Tools for Everyone">
+<meta name="twitter:description" content="25+ free browser-based tools for PDF, image, text and developer tasks.">
+<meta name="twitter:image" content="https://toolnova.app/assets/logo-full-dark.svg">
+
+<link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ToolNova",
+  "url": "https://toolnova.app/",
+  "logo": "https://toolnova.app/assets/logo-full-dark.svg",
+  "description": "ToolNova provides free, browser-based online tools for PDF, image, text, developer, color and calculator tasks."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ToolNova",
+  "url": "https://toolnova.app/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://toolnova.app/tools.html?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Is ToolNova really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every tool on ToolNova is free to use, with no sign-up and no hidden limits."}},
+    {"@type": "Question", "name": "Do I need to install anything?", "acceptedAnswer": {"@type": "Answer", "text": "No. All tools run directly in your browser — nothing to download or install."}},
+    {"@type": "Question", "name": "Is my data safe when I use ToolNova?", "acceptedAnswer": {"@type": "Answer", "text": "Most ToolNova tools process your files and text locally in your browser, so your data never leaves your device."}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="logo-lockup">
+      <img src="assets/logo-mark.svg" alt="ToolNova logo" class="logo-mark">
+      Tool<span class="accent">Nova</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="active">Home</a>
+      <a href="tools.html">All Tools</a>
+      <a href="tools.html#pdf-tools">PDF Tools</a>
+      <a href="tools.html#image-tools">Image Tools</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark or light theme">☾</button>
+      <a href="tools.html" class="btn btn-primary btn-sm">Browse Tools</a>
+      <button class="nav-burger" id="navBurger" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container"><div class="ad-slot" data-ad-slot="header" style="margin-top:14px;">Ad placeholder — header banner (728×90)</div></div>
+
+<header class="hero">
+  <div class="container">
+    <span class="eyebrow">✦ 25+ free tools, zero sign-up</span>
+    <h1>Every tool you need. <br> None of the friction.</h1>
+    <p class="lead">ToolNova bundles fast, private, browser-based tools for PDFs, images, text and code — so you can get things done without installing software or creating an account.</p>
+
+    <div style="position:relative;">
+      <div class="hero-search">
+        <span>🔍</span>
+        <input type="text" id="heroSearch" placeholder="Search for a tool — e.g. 'word counter', 'JSON formatter'…">
+        <button class="btn btn-primary btn-sm">Search</button>
+      </div>
+      <div id="heroSearchResults" style="display:none;position:absolute;top:56px;left:0;right:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;z-index:20;max-width:620px;margin:0 auto;"></div>
+    </div>
+
+    <div class="hero-stats">
+      <div><div class="num">25+</div><div class="lbl">Live tools</div></div>
+      <div><div class="num">100%</div><div class="lbl">Free forever</div></div>
+      <div><div class="num">0</div><div class="lbl">Sign-ups needed</div></div>
+      <div><div class="num">On-device</div><div class="lbl">Processing</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-slot" data-ad-slot="belowHero" aria-label="advertisement placeholder">Ad placeholder — below hero (728×90)</div>
+</div>
+
+<main>
+  <section class="section container">
+    <div class="section-head">
+      <div><h2>Browse by category</h2><p>Everything is organized so the right tool is never more than two clicks away.</p></div>
+      <a href="tools.html" class="btn btn-ghost btn-sm">View all →</a>
+    </div>
+    <div class="grid grid-cat">
+      <a href="tools.html#pdf-tools" class="card cat-card reveal"><div class="ic">📄</div><h3>PDF Tools</h3><span>Merge, split, compress</span></a>
+      <a href="tools.html#image-tools" class="card cat-card reveal"><div class="ic">🖼</div><h3>Image Tools</h3><span>Convert, resize, compress</span></a>
+      <a href="tools.html#text-tools" class="card cat-card reveal"><div class="ic">📝</div><h3>Text Tools</h3><span>Count, clean, format</span></a>
+      <a href="tools.html#dev-tools" class="card cat-card reveal"><div class="ic">{ }</div><h3>Developer Tools</h3><span>JSON, Base64, minify</span></a>
+      <a href="tools.html#color-tools" class="card cat-card reveal"><div class="ic">🎨</div><h3>Color Tools</h3><span>Pick, convert, gradient</span></a>
+      <a href="tools.html#calculators" class="card cat-card reveal"><div class="ic">＝</div><h3>Calculators</h3><span>BMI, EMI, age &amp; more</span></a>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="section-head">
+      <div><h2>Popular tools</h2><p>The tools people reach for most.</p></div>
+    </div>
+    <div class="grid grid-tools">
+      <a href="tools.html#word-counter" class="card tool-card reveal"><div class="top"><div class="ic">📝</div><h3>Word Counter</h3></div><p>Instant word, character and reading-time counts.</p><span class="tag">Text</span></a>
+      <a href="tools.html#json-formatter" class="card tool-card reveal"><div class="top"><div class="ic">{ }</div><h3>JSON Formatter</h3></div><p>Format, validate and beautify JSON instantly.</p><span class="tag">Developer</span></a>
+      <a href="tools.html#password-generator" class="card tool-card reveal"><div class="top"><div class="ic">🔒</div><h3>Password Generator</h3></div><p>Create strong, random passwords in one click.</p><span class="tag">Text</span></a>
+      <a href="tools.html#qr-generator" class="card tool-card reveal"><div class="top"><div class="ic">▦</div><h3>QR Code Generator</h3></div><p>Turn any link or text into a downloadable QR code.</p><span class="tag">QR</span></a>
+      <a href="tools.html#image-compressor" class="card tool-card reveal"><div class="top"><div class="ic">🖼</div><h3>Image Compressor</h3></div><p>Shrink image file size without losing quality.</p><span class="tag">Image</span></a>
+      <a href="tools.html#bmi-calculator" class="card tool-card reveal"><div class="top"><div class="ic">⚖</div><h3>BMI Calculator</h3></div><p>Check your body mass index in seconds.</p><span class="tag">Calculator</span></a>
+      <a href="tools.html#base64" class="card tool-card reveal"><div class="top"><div class="ic">⇄</div><h3>Base64 Encoder</h3></div><p>Encode or decode Base64 text and data.</p><span class="tag">Developer</span></a>
+      <a href="tools.html#hex-rgb" class="card tool-card reveal"><div class="top"><div class="ic">#</div><h3>HEX ↔ RGB</h3></div><p>Convert colors between HEX and RGB formats.</p><span class="tag">Color</span></a>
+    </div>
+  </section>
+
+  <div class="container"><div class="ad-slot" data-ad-slot="betweenCards" aria-label="advertisement placeholder">Ad placeholder — between tool cards (in-feed)</div></div>
+
+  <section class="section container">
+    <div class="section-head">
+      <div><h2>Why ToolNova</h2><p>Built to be fast, private and genuinely useful.</p></div>
+    </div>
+    <div class="grid grid-cat">
+      <div class="card cat-card reveal"><div class="ic">⚡</div><h3>Instant results</h3><span>No queues, no waiting rooms.</span></div>
+      <div class="card cat-card reveal"><div class="ic">🔐</div><h3>Private by default</h3><span>Most tools never leave your browser.</span></div>
+      <div class="card cat-card reveal"><div class="ic">💸</div><h3>Always free</h3><span>No plans, no paywalls, no trials.</span></div>
+      <div class="card cat-card reveal"><div class="ic">📱</div><h3>Works everywhere</h3><span>Phone, tablet or desktop.</span></div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="section-head"><div><h2>Latest from the blog</h2><p>Guides that go with the tools.</p></div><a href="blog.html" class="btn btn-ghost btn-sm">View all →</a></div>
+    <div class="grid grid-tools" id="homeBlogGrid">
+      <div class="card tool-card"><div class="skeleton" style="height:18px;width:70%;margin-bottom:10px;"></div><div class="skeleton" style="height:14px;width:100%;"></div></div>
+      <div class="card tool-card"><div class="skeleton" style="height:18px;width:70%;margin-bottom:10px;"></div><div class="skeleton" style="height:14px;width:100%;"></div></div>
+      <div class="card tool-card"><div class="skeleton" style="height:18px;width:70%;margin-bottom:10px;"></div><div class="skeleton" style="height:14px;width:100%;"></div></div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="section-head"><div><h2>Frequently asked questions</h2></div></div>
+    <div>
+      <div class="faq-item open">
+        <button class="faq-q">Is ToolNova really free? <span class="chev">+</span></button>
+        <div class="faq-a"><p>Yes — every tool is free to use, with no sign-up and no hidden limits.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need to install anything? <span class="chev">+</span></button>
+        <div class="faq-a"><p>No. All tools run directly in your browser — nothing to download or install.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is my data safe when I use ToolNova? <span class="chev">+</span></button>
+        <div class="faq-a"><p>Most ToolNova tools process your files and text locally on your device, so your data never leaves your browser.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I use ToolNova on mobile? <span class="chev">+</span></button>
+        <div class="faq-a"><p>Yes — every tool is built mobile-first and works the same on phones, tablets and desktops.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="newsletter reveal">
+      <h2>Get new tools first</h2>
+      <p style="color:var(--muted);margin-top:8px;">One short email whenever we ship something new. No spam.</p>
+      <form onsubmit="event.preventDefault(); tnToast('Thanks — you are subscribed!', 'success'); this.reset();">
+        <input type="email" required placeholder="you@example.com">
+        <button class="btn btn-primary" type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <div class="container"><div class="ad-slot" data-ad-slot="footer" aria-label="advertisement placeholder">Ad placeholder — footer banner (728×90)</div></div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="logo-lockup"><img src="assets/logo-mark.svg" alt="ToolNova" class="logo-mark">Tool<span class="accent">Nova</span></a>
+        <p style="color:var(--muted);font-size:13.5px;margin-top:14px;max-width:260px;">Free, fast, browser-based tools for everyday PDF, image, text and developer tasks.</p>
+      </div>
+      <div>
+        <h4>Tools</h4>
+        <a href="tools.html#pdf-tools">PDF Tools</a>
+        <a href="tools.html#image-tools">Image Tools</a>
+        <a href="tools.html#text-tools">Text Tools</a>
+        <a href="tools.html#dev-tools">Developer Tools</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ToolNova. All rights reserved.</span>
+      <span>Made for people who just want things done.</span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<script src="assets/config.js"></script>
+<script src="assets/cms-loader.js"></script>
+<script src="assets/main.js"></script>
+<script>
+initSiteSearch('heroSearch', 'heroSearchResults');
+
+async function renderHomeBlogPreview() {
+  const grid = document.getElementById('homeBlogGrid');
+  if (!cmsConfigured()) {
+    grid.innerHTML = `<div class="card tool-card"><p style="color:var(--muted);">Blog isn't connected yet — see README.md.</p></div>`;
+    return;
+  }
+  try {
+    const posts = (await fetchBlogList()).slice(0, 3);
+    if (!posts.length) { grid.innerHTML = ''; return; }
+    grid.innerHTML = posts.map(p => `
+      <a href="blog-post.html?slug=${encodeURIComponent(p.slug)}" class="card tool-card reveal">
+        <div class="top"><div class="ic">${p.icon || '📄'}</div><h3>${p.title}</h3></div>
+        <p>${p.excerpt || ''}</p>
+      </a>`).join('');
+  } catch (e) {
+    grid.innerHTML = `<div class="card tool-card"><p style="color:var(--muted);">Couldn't load posts.</p></div>`;
+  }
+}
+renderHomeBlogPreview();
+</script>
+</body>
+</html>

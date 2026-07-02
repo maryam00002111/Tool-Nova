@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Loading… | ToolNova Blog</title>
+<meta id="metaDesc" name="description" content="">
+<link id="canonicalLink" rel="canonical" href="">
+<meta id="ogTitle" property="og:type" content="article">
+<meta id="ogDesc" property="og:description" content="">
+<link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .article { max-width: 700px; margin: 0 auto; }
+  .article h2 { font-size: 21px; margin: 32px 0 10px; }
+  .article h3 { font-size: 17px; margin: 22px 0 8px; }
+  .article p, .article li { color: var(--muted); font-size: 15px; margin-bottom: 12px; line-height: 1.7; }
+  .article ul, .article ol { padding-left: 20px; margin-bottom: 14px; }
+  .article code { font-family: var(--font-mono); background: var(--surface-2); padding: 2px 6px; border-radius: 4px; font-size: 13px; color: var(--text); }
+  .article pre { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px; margin-bottom: 14px; }
+  .article table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13.5px; }
+  .article th, .article td { border: 1px solid var(--border); padding: 10px 12px; text-align: left; color: var(--muted); }
+  .article th { color: var(--text); font-family: var(--font-display); font-size: 13px; }
+  .article img { border-radius: var(--radius); margin: 16px 0; }
+  .toc { border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 22px; margin: 24px 0; background: var(--surface); }
+  .toc a { display: block; font-size: 13.5px; color: var(--muted); padding: 4px 0; }
+  .toc a:hover { color: var(--nova-1); }
+  .meta-row { display: flex; gap: 16px; flex-wrap: wrap; color: var(--muted); font-size: 13px; margin-bottom: 26px; }
+  .skeleton-block { height: 20px; margin-bottom: 12px; }
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="navbar-inner">
+  <a href="index.html" class="logo-lockup"><img src="assets/logo-mark.svg" alt="ToolNova logo" class="logo-mark">Tool<span class="accent">Nova</span></a>
+  <div class="nav-links" id="navLinks"><a href="index.html">Home</a><a href="tools.html">All Tools</a><a href="blog.html" class="active">Blog</a><a href="about.html">About</a></div>
+  <div class="nav-actions"><button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">☾</button><button class="nav-burger" id="navBurger" aria-label="Open menu">☰</button></div>
+</div></nav>
+<div class="container">
+  <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><a href="blog.html">Blog</a><span class="sep">/</span><span id="breadcrumbTitle">Article</span></div>
+
+  <article class="section article" id="articleRoot">
+    <div class="skeleton skeleton-block" style="width:80%;height:36px;"></div>
+    <div class="skeleton skeleton-block" style="width:40%;"></div>
+    <div class="skeleton skeleton-block" style="width:100%;"></div>
+    <div class="skeleton skeleton-block" style="width:95%;"></div>
+    <div class="skeleton skeleton-block" style="width:90%;"></div>
+  </article>
+
+  <div id="blogAdContent" class="ad-slot" data-ad-slot="blogContent" style="max-width:700px;margin:30px auto;">Ad placeholder — inside blog content</div>
+  <div id="blogAdEnd" class="ad-slot" data-ad-slot="blogEnd" style="max-width:700px;margin:20px auto;">Ad placeholder — end of blog post</div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><span>© 2026 ToolNova. All rights reserved.</span><a href="index.html">Back to home</a></div></div></footer>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/cms-loader.js"></script>
+<script src="assets/main.js"></script>
+<script>
+function escapeAttr(str) {
+  return (str || '').replace(/"/g, '&quot;');
+}
+
+function slugify(str) {
+  return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+function buildTOC(bodyHtml) {
+  const container = document.createElement('div');
+  container.innerHTML = bodyHtml;
+  const headings = container.querySelectorAll('h2');
+  if (!headings.length) return '';
+  let links = '';
+  headings.forEach(h => {
+    const id = slugify(h.textContent);
+    h.id = id;
+    links += `<a href="#${id}">${h.textContent}</a>`;
+  });
+  return { html: container.innerHTML, toc: links };
+}
+
+async function renderArticle() {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug');
+  const root = document.getElementById('articleRoot');
+
+  if (!cmsConfigured()) {
+    root.innerHTML = `<h1 style="font-size:26px;">Blog content isn't connected yet</h1>
+      <p style="color:var(--muted);margin-top:12px;">This page pulls articles from the GitHub repo once <code>assets/config.js</code> has your GitHub username and repo name filled in — see README.md → "Setting up the CMS." Until then there's no live content to show.</p>
+      <p style="margin-top:14px;"><a href="blog.html" style="color:var(--nova-1);">Back to the blog index</a></p>`;
+    return;
+  }
+  if (!slug) {
+    root.innerHTML = `<h1 style="font-size:26px;">No article specified</h1><p style="color:var(--muted);margin-top:12px;"><a href="blog.html" style="color:var(--nova-1);">Browse all articles</a></p>`;
+    return;
+  }
+
+  let post;
+  try {
+    post = await fetchBlogPost(slug);
+  } catch (e) {
+    root.innerHTML = `<h1 style="font-size:26px;">Couldn't load this article</h1><p style="color:var(--muted);margin-top:12px;">${e.message}</p>`;
+    return;
+  }
+  if (!post) {
+    root.innerHTML = `<h1 style="font-size:26px;">Article not found</h1><p style="color:var(--muted);margin-top:12px;">No post exists at slug "${escapeAttr(slug)}". <a href="blog.html" style="color:var(--nova-1);">Browse all articles</a></p>`;
+    return;
+  }
+
+  // SEO tags
+  document.getElementById('pageTitle').textContent = post.title + ' | ToolNova';
+  document.getElementById('metaDesc').setAttribute('content', post.metaDescription || post.excerpt || '');
+  document.getElementById('ogTitle').setAttribute('content', post.title);
+  document.getElementById('ogDesc').setAttribute('content', post.metaDescription || post.excerpt || '');
+  document.getElementById('breadcrumbTitle').textContent = post.title;
+  const canonicalUrl = window.location.origin + window.location.pathname + '?slug=' + slug;
+  document.getElementById('canonicalLink').setAttribute('href', canonicalUrl);
+
+  // JSON-LD (Article + FAQ if present)
+  const articleLd = document.createElement('script');
+  articleLd.type = 'application/ld+json';
+  articleLd.textContent = JSON.stringify({
+    "@context": "https://schema.org", "@type": "Article",
+    "headline": post.title, "description": post.metaDescription || post.excerpt,
+    "author": { "@type": "Organization", "name": "ToolNova" },
+    "publisher": { "@type": "Organization", "name": "ToolNova" },
+    "datePublished": post.date, "dateModified": post.date
+  });
+  document.head.appendChild(articleLd);
+
+  if (post.faq && post.faq.length) {
+    const faqLd = document.createElement('script');
+    faqLd.type = 'application/ld+json';
+    faqLd.textContent = JSON.stringify({
+      "@context": "https://schema.org", "@type": "FAQPage",
+      "mainEntity": post.faq.map(f => ({
+        "@type": "Question", "name": f.question,
+        "acceptedAnswer": { "@type": "Answer", "text": f.answer }
+      }))
+    });
+    document.head.appendChild(faqLd);
+  }
+
+  // Render body markdown → HTML, then build a table of contents from the H2s
+  const rawHtml = (typeof marked !== 'undefined') ? marked.parse(post.body || '') : '<p>' + (post.body || '') + '</p>';
+  const { html: bodyHtml, toc } = buildTOC(rawHtml) || { html: rawHtml, toc: '' };
+
+  const dateStr = post.date ? new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+
+  let faqHtml = '';
+  if (post.faq && post.faq.length) {
+    faqHtml = '<h2>FAQ</h2>' + post.faq.map(f => `<h3>${f.question}</h3><p>${f.answer}</p>`).join('');
+  }
+
+  let relatedHtml = '';
+  if (post.relatedTools && post.relatedTools.length) {
+    relatedHtml = '<h2>Related tools</h2><p>' + post.relatedTools.map(t => `<a href="${t.href}" style="color:var(--nova-1);">${t.label}</a>`).join(' · ') + '</p>';
+  }
+
+  const coverHtml = post.coverImage ? `<img src="${post.coverImage}" alt="${escapeAttr(post.title)}" style="width:100%;">` : '';
+
+  root.innerHTML = `
+    <h1 style="font-size:32px;margin-bottom:14px;">${post.title}</h1>
+    <div class="meta-row"><span>By ToolNova Team</span><span>·</span><span>${dateStr}</span><span>·</span><span>${post.readTime || ''}</span></div>
+    ${coverHtml}
+    ${toc ? `<div class="toc"><strong style="font-size:13px;">On this page</strong>${toc}</div>` : ''}
+    ${bodyHtml}
+    ${faqHtml}
+    ${relatedHtml}
+    <h2>More from the blog</h2>
+    <p><a href="blog.html" style="color:var(--nova-1);">Back to the blog index</a></p>
+    <div style="margin-top:30px;display:flex;gap:10px;">
+      <span style="color:var(--muted);font-size:13px;align-self:center;">Share:</span>
+      <a class="btn btn-ghost btn-sm" href="https://twitter.com/intent/tweet?url=${encodeURIComponent(canonicalUrl)}" target="_blank" rel="noopener">X</a>
+      <a class="btn btn-ghost btn-sm" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonicalUrl)}" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  `;
+}
+
+renderArticle();
+</script>
+</body>
+</html>
