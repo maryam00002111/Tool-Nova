@@ -1,0 +1,19 @@
+{
+  "title": "What Is Base64 Encoding, Really?",
+  "slug": "base64-explained",
+  "icon": "{ }",
+  "coverImage": "",
+  "excerpt": "A plain-English explanation with a real example.",
+  "metaDescription": "A plain-English explanation of Base64 encoding — what it actually does, why it exists, and when you'd use it, with real examples.",
+  "focusKeyword": "what is base64 encoding",
+  "readTime": "5 min read",
+  "date": "2026-07-02T00:00:00.000Z",
+  "body": "Base64 shows up everywhere — email attachments, image data inside CSS files, API tokens — but it's often misunderstood as some kind of security feature. It isn't. It's a translation format, nothing more.\n\n## What it actually does\n\nComputers store data as binary — raw bytes that can include any value from 0–255. Some systems (older email protocols, JSON, URLs) were only built to safely carry plain text characters. Base64 solves that mismatch: it takes any binary data and re-represents it using only 64 safe characters — `A–Z`, `a–z`, `0–9`, `+`, and `/` — so it can travel through text-only systems without corruption.\n\n## Why it exists\n\nIt groups the original data into 3-byte chunks and re-maps each chunk into 4 Base64 characters. That's also why Base64 output is always about 33% larger than the original — you're trading size for compatibility.\n\n## A real example\n\nThe plain text `Hello` becomes this in Base64:\n\n```\nSGVsbG8=\n```\n\nThe trailing `=` is padding — it appears when the input length doesn't divide evenly into those 3-byte chunks, so the last group needs filling out to stay a valid 4-character block.\n\n## It is not encryption\n\nBecause Base64 is a defined, reversible mapping — not a secret — decoding it requires no password or key. If you paste that string into any Base64 decoder, you get `Hello` back immediately. Never use Base64 alone to \"hide\" sensitive information; it only obscures it from a casual glance.",
+  "faq": [
+    { "question": "Is Base64 encryption?", "answer": "No. Base64 is an encoding, not encryption — anyone can decode it instantly with no key or password, so it should never be relied on to protect sensitive data." },
+    { "question": "Why does Base64 text end with = signs?", "answer": "The = characters are padding, added when the original data length isn't a clean multiple of 3 bytes, so the encoded output lines up into complete 4-character groups." }
+  ],
+  "relatedTools": [
+    { "label": "Base64 Encoder / Decoder", "href": "tools.html#base64" }
+  ]
+}
