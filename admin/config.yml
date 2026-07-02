@@ -1,0 +1,67 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# After you deploy, invite yourself via Netlify Identity + enable Git Gateway
+# (Site settings → Identity → Enable, then Services → Git Gateway → Enable).
+# See README.md → "Setting up the CMS" for the full walkthrough.
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    label_singular: "Blog Post"
+    folder: "content/blog"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    identifier_field: "title"
+    summary: "{{title}} — {{date}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "URL Slug", name: "slug", widget: "string", hint: "Used in the article URL — lowercase, hyphens only, e.g. jpg-vs-png" }
+      - { label: "Icon (emoji shown on cards)", name: "icon", widget: "string", default: "📄" }
+      - { label: "Cover Image", name: "coverImage", widget: "image", required: false, hint: "Optional. Shows at the top of the article if set." }
+      - { label: "Excerpt", name: "excerpt", widget: "text", hint: "Short summary shown on blog cards" }
+      - { label: "Meta Description", name: "metaDescription", widget: "text", hint: "Used for SEO — aim for under 160 characters" }
+      - { label: "Focus Keyword", name: "focusKeyword", widget: "string", required: false }
+      - { label: "Read Time", name: "readTime", widget: "string", default: "5 min read" }
+      - { label: "Date Published", name: "date", widget: "datetime" }
+      - { label: "Body (Markdown)", name: "body", widget: "markdown" }
+      - label: "FAQ"
+        name: "faq"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Question", name: "question", widget: "string" }
+          - { label: "Answer", name: "answer", widget: "text" }
+      - label: "Related Tools"
+        name: "relatedTools"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "Link (e.g. tools.html#base64)", name: "href", widget: "string" }
+
+  - name: "settings"
+    label: "Site Settings"
+    editor:
+      preview: false
+    files:
+      - name: "ads"
+        label: "Ad Codes"
+        file: "content/settings/ads.json"
+        description: "Paste your Adsterra (or other network) ad unit code into any slot. Leave blank to show nothing in that spot."
+        fields:
+          - { label: "Header Banner", name: "header", widget: "text", required: false }
+          - { label: "Below Hero (homepage)", name: "belowHero", widget: "text", required: false }
+          - { label: "Between Tool Cards", name: "betweenCards", widget: "text", required: false }
+          - { label: "Inside Blog Content", name: "blogContent", widget: "text", required: false }
+          - { label: "End of Blog Post", name: "blogEnd", widget: "text", required: false }
+          - { label: "Sidebar (Desktop, tools page)", name: "sidebar", widget: "text", required: false }
+          - { label: "Footer Banner", name: "footer", widget: "text", required: false }
